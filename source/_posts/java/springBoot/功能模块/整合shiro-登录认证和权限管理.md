@@ -12,6 +12,12 @@ description:
 ---
 >转
 
+# 解决的问题
+
+- shiro的介绍
+- shiro的权限验证和角色管理
+- 如何在jsp中集成shiro
+
 # 关于 Apache shiro
 
 ## 目的
@@ -38,6 +44,13 @@ Apache Shiro是一个功能强大、灵活的，开源的安全框架。它可�
 等等——都集成到一个有凝聚力的易于使用的API。
 
 Shiro 致力在所有应用环境下实现上述功能，小到命令行应用程序，大到企业应用中，而且不需要借助第三方框架、容器、应用服务器等。当然 Shiro 的目的是尽量的融入到这样的应用环境中去，但也可以在它们之外的任何环境下开箱即用。
+
+### shiro的核心管理对象
+
+1. ShiroFilterFactory：Shiro过滤器工厂类，具体的实现类是：ShiroFilterFactoryBean，此实现类是依赖于SecurityManager安全管理器的。
+2. SecurityManager：Shiro的安全管理器，主要是身份认证的管理，缓存管理，Cookie管理，所以在时机开发中主要是和SecurityManager进行打交道的，ShiroFilterFacotory只要配置好Filter就可以了。
+3. AccessControlFilter：访问控制过滤器，对请求进行拦截处理，在这里我们可以进行一些基本的判断以及数据的基本处理，然后生成一个AuthenticationToken，然后委托给Realm进行身份的验证和权限的验证。
+4. Ream：用于身份信息权限的验证。
 
 ### Apache Shiro Features 特性
 
@@ -465,3 +478,4 @@ shiro很强大，这仅仅是完成了登录认证和权限管理这两个功能
 # 参考 #
 1. [springboot(十四)：springboot整合shiro-登录认证和权限管理](http://www.ityouknow.com/springboot/2017/06/26/springboot-shiro.html)
 2. [作者示例代码](https://github.com/ityouknow/spring-boot-examples)
+3.[Spring Boot Shiro权限管理【从零开始学Spring Boot】](http://412887952-qq-com.iteye.com/blog/2299732)

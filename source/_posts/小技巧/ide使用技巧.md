@@ -37,20 +37,29 @@ description: IDEA的一些使用技巧、插件等
             <artifactId>lombok</artifactId>
         </dependency>
 
-2. 添加插件
+2. 添加插件lombok
+3. 添加类注解@Data 或 @Get
 
-lombok
+### 编码规范
 
-3. 添加类注解
+> save action插件
 
-@Data 或 @Get
-
+> Alibaba Java Coding Guidelines插件
 
 # vscode技巧
 
 - 在当前目录打开命令行：Ctrl+shift+c
 
 # markdown使用
+
+## 如何添加代码块
+
+使用格式:
+
+\``` 某语言 (java,c,c++)   
+代码块  
+\```
+
 
 ### 添加超链接
 
