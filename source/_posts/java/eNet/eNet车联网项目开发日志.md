@@ -4,7 +4,6 @@ type: tags
 tags:
   - 项目体会Log
 date: 2018-09-30 15:18:40
-updated: 2018-09-30 15:18:40
 categories: 项目
 description: 大二至大三期间开发的一个车联网项目的体会Log
 ---

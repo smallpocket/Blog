@@ -2,9 +2,8 @@
 title: javaBase线程
 type: tags
 tags:
-- javaBase
+- JavaBase
 date: 2018-09-23 10:39:50
-updated: 2018-09-23 10:39:50
 categories: java
 description: java线程初学习
 ---

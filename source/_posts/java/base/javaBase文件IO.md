@@ -2,11 +2,10 @@
 title: java文件IO
 type: tags
 tags:
-- javaBase
+- JavaBase
 date: 2018-09-23 10:39:13
-updated: 2018-09-23 10:39:13
 categories: java
-description:
+description: java笔记的基础知识整理，SE文件IO
 ---
 ##文件输出格式
 - 序列化数据

@@ -4,7 +4,6 @@ type: tags
 tags:
   - null
 date: 2018-09-30 15:22:12
-updated: 2018-09-30 15:22:12
 categories:
 description:
 ---

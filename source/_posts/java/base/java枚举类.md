@@ -2,11 +2,10 @@
 title: java枚举类
 type: tags
 tags:
-  - javaBase
+  - JavaBase
 date: 2018-10-08 14:35:04
-updated: 2018-10-08 14:35:04
 categories: java
-description:
+description: 枚举的创建于作用，使用枚举管理状态码
 ---
 # 基础
 

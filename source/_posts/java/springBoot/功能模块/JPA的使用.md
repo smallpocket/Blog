@@ -4,7 +4,6 @@ type: tags
 tags:
   - java
 date: 2018-10-02 23:18:34
-updated: 2018-10-02 23:18:34
 categories: spring boot
 description: JPA的整合使用
 ---

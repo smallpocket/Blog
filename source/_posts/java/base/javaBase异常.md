@@ -2,11 +2,10 @@
 title: javaBase异常
 type: tags
 tags:
-  - javaBase
+  - JavaBase
 date: 2018-09-23 10:42:01
-updated: 2018-09-23 10:42:01
-categories:
-description:
+categories: java
+description: java笔记的基础知识整理，SE异常处理
 ---
 ###try-catch
 >
