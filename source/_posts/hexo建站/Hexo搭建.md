@@ -16,7 +16,7 @@ description: hexo+next进行博客的搭建
 1. git bash下，定位到 Hexo 站点目录下。
 2. 使用 hexo new page 新建一个页面，命名为 tags ：即 hexo new page tags
 3. 或者hexo new posts "" 新建一个文章 ，默认为posts,即在post文件夹下面新建
-4. 或者hexo new draft 新建一个草稿
+4. 或者hexo new draft 新建一个草稿，hexo publish 可以将草稿移到post当中，{hexo publish [layout] <title>}
 5. 在source/_posts/路径下即可见
 
 文章的头部：
