@@ -43,6 +43,7 @@ description: hexo+next进行博客的搭建
 - hexo publish 发布内容，实际上是将内容从drafts（草稿）文件夹移到posts（文章）文件夹。
 - hexo server 简写hexo s 启动服务器，默认情况下，访问网站为http://localhost:4000/
 - 步骤： n c s g d
+- n：新建文件，c：清理缓存，g：生成静态，d：部署
 
 ## 内容标签 ##
 

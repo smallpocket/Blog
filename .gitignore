@@ -5,3 +5,10 @@ db.json
 node_modules/
 public/
 .deploy*/
+package.json
+package-lock.json
+_config.yml
+_admin-config.yml
+themes/
+scaffolds/
+node_modules/
