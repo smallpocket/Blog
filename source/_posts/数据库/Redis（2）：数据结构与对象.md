@@ -2,9 +2,10 @@
 title: Redis（2）：数据结构与对象
 type: tags
 tags:
-  - null
+  - NoSQL
+  - Redis
 date: 2019-03-04 18:34:18
-categories:
+categories: 数据库
 description:
 ---
 
@@ -13,7 +14,7 @@ description:
 Redis数据库里面的每个键值对都是由对象组成的
 
 - 数据库键总是一个字符串对象
-- 数据库键的值可以是
+- 数据库值可以是
   - 字符串对象
   - 列表对象
   - 哈希对象
@@ -36,7 +37,7 @@ SDS使用
 
 ## SDS定义
 
-```
+```C
 struct sdshdr{
 //记录buf数组已经使用的字节的数量
     int len;
@@ -78,9 +79,9 @@ C字符串的字符串表示方法不能满足Redis对字符串在安全性、�
 
 ## SDS的主要操作API
 
-![1551695057543](C:\Users\Heper\AppData\Roaming\Typora\typora-user-images\1551695057543.png)
+![1551695057543](assets\1551695057543.png)
 
-![1551695070215](C:\Users\Heper\AppData\Roaming\Typora\typora-user-images\1551695070215.png)
+![1551695070215](assets\1551695070215.png)
 
 # 链表
 
@@ -133,9 +134,9 @@ typedef struct list{
 
 ## API
 
-![1551695605130](C:\Users\Heper\AppData\Roaming\Typora\typora-user-images\1551695605130.png)
+![1551695605130](assets\1551695605130.png)
 
-![1551695615751](C:\Users\Heper\AppData\Roaming\Typora\typora-user-images\1551695615751.png)
+![1551695615751](assets\1551695615751.png)
 
 # 字典
 
@@ -262,9 +263,11 @@ typedef struct dictEntry{
 
 ## API
 
-![1552026275087](C:\Users\Heper\AppData\Roaming\Typora\typora-user-images\1552026275087.png)
+![1552026275087](assets\1552026275087.png)
 
-![1552026286675](C:\Users\Heper\AppData\Roaming\Typora\typora-user-images\1552026286675.png)
+![1552026286675](assets\1552026286675.png)
+
+
 
 # 跳跃表
 
@@ -316,11 +319,11 @@ typedef struct zskiplistNode{
 
 ## 查找
 
-![1552029291744](C:\Users\Heper\AppData\Roaming\Typora\typora-user-images\1552029291744.png)
+![1552029291744](assets\1552029291744.png)
 
 ## API
 
-![1552029490765](C:\Users\Heper\AppData\Roaming\Typora\typora-user-images\1552029490765.png)
+![1552029490765](assets\1552029490765.png)
 
 # 整数集合
 
@@ -362,7 +365,7 @@ typedef struct intset{
 
 ## API
 
-![1552030303322](C:\Users\Heper\AppData\Roaming\Typora\typora-user-images\1552030303322.png)
+![1552030303322](assets\1552030303322.png)
 
 # 压缩列表
 
@@ -385,7 +388,8 @@ typedef struct intset{
 
 **节点构成**
 
-- previous_entry_length：记录前一个节点的长度（字节为单位）
+- previous_entry_length：记录前一个节点的长度（字节为单位），因此可以从尾部向头部遍历
+  - 长度可能1个字节（上一个结点的长度小于254）或5个字节
 - encoding：记录content属性所保存数据的类型已经长度
 - content：保存节点的值
 
@@ -397,7 +401,7 @@ typedef struct intset{
 
 ## API
 
-![1552033129986](C:\Users\Heper\AppData\Roaming\Typora\typora-user-images\1552033129986.png)
+![1552033129986](assets\1552033129986.png)
 
 # 对象
 
@@ -431,7 +435,7 @@ typedef struct redisObject{
 
 **类型**
 
-![1552033987495](C:\Users\Heper\AppData\Roaming\Typora\typora-user-images\1552033987495.png)
+![1552033987495](assets\1552033987495.png)
 
 键总是一个字符串对象，而值可能是其中一种。
 
@@ -441,7 +445,7 @@ typedef struct redisObject{
 
 ptr指向对象的底层实现数据结构，而数据结构由encoding属性决定
 
-![1552034120684](C:\Users\Heper\AppData\Roaming\Typora\typora-user-images\1552034120684.png)
+![1552034120684](assets\1552034120684.png)
 
 - 根据不同使用场景为对象设置不同的编码，优化对象效率
 - 在列表对象包含元素较少，则使用压缩列表。更节约内存，在内存中连续块保存更快载入到内存
