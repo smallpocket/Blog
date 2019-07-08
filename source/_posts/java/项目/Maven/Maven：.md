@@ -57,6 +57,69 @@ lib目录，maven平时自己会用到的目录
 
 ![1560664244081](assets/1560664244081.png)
 
+## Maven仓库
+
+***仓库分类***
+
+- local: ~/.m2/repository
+- remote 远程仓库
+  - 中央仓库http://repo1.maven.org/maven2/ 
+  - 私服 http://maven.hellobike.cn/
+  - 第三方 jboss、aliyun……
+
+### maven包管理流程
+
+当在pom文件中依赖某个包后，如果没有做特殊配置
+
+1. 到本地仓库进行搜索，若本地仓库没有则下一步
+2. 到中央仓库进行获取。
+
+### Mvaen私服
+
+由于中央仓库在国外，因此速度无法保证。
+
+搭建maven私服，保证稳定性。并且可以将一些工具包等放入，提高项目开发的灵活度。
+
+***搭建***
+
+Nexus 是用来搭建 Maven 私服的可以说是唯一的工具，它的官网上是这样说的：“世界上第一个也是唯一的免费使用的仓库解决方案”。目前的最新版本是 OSS 3.x。提供了针对 Windows、Unix、OS X 三种系统的版本。
+
+***配置仓库***
+
+```xml
+<mirrors>
+	     <mirror>
+             <!-- 唯一标识一个mirror -->
+      <id>mirrorId</id>
+             <!-- 代表了一个镜像的替代位置，例如central就表示代替官方的中央库 -->
+      <mirrorOf>repositoryId</mirrorOf>
+             <!--描述-->
+      <name>Human Readable Name for this Mirror.</name>
+     <!--库地址--> <url>http://my.repository.com/repo/path</url>
+    </mirror>
+    ...
+</mirrors>
+```
+
+### 配置文件
+
+配置结构：
+
+- localRepository       本地仓库路径
+- interactiveMode     值为true/false，true表示mave可以使用用户输入，默认true
+- usePluginRegistry   true表示maven使用~/.m2/plugin-registry.xml管理插件版本
+- Offline                    true表示构建系统在离线模式下执行
+- pluginGroups         当你在命令行中没有提供插件的groupid时，将会使用该列表
+- Servers                   账号密码等信息
+- Mirrors                   镜像，通过mirrorOf 规则进行匹配
+- Proxies                   代理服务
+- Profiles                   是pom.xml的profile元素的一个裁剪版本
+- activeProfiles          激活Profiles
+
+1. 
+
+
+
 ## Maven项目
 
 Maven项目与实际项目不是一一对应的关系，而是对应一个模块，一个实际的项目往往有很多个模块
@@ -140,15 +203,22 @@ mvn install # 安装jar包到软件仓库中
 
 完整的项目构建过程：清理、编译、测试、打包、 集成测试、验证、部署
 
-***maven生命周期：***
+***maven常见生命周期：***
 
 - clean：清理项目
   - pre-clean：执行清理前的工作
   - clean：清理上一次构建生成的所有文件
   - post-clean：执行清理后的文件
+- vaidate：验证。验证工程配置是否正确
+- compile：编译。
+- test：单元测试
+- package：打包。根据pom描述的打包配置进行打包
+- verify：检查。验证工程包有效，并满足质量要求
+- install：安装。在本地、远程仓库中安装工程包
+- deploy：发布
 - default：构建项目
   - compile test package install
--  site：生成项目站点
+- site：生成项目站点
   - pre-site：生成项目站点前要完成的工作
   - site：生成项目的站点文档
   - post-site：
@@ -156,11 +226,38 @@ mvn install # 安装jar包到软件仓库中
 
 ### 插件
 
+build 插件，如package、install、deploy
+
 包括compile test package等都是插件
+
+versions-maven-plugin插件：version管理
 
 ## Pom
 
 Pom是Maven项目的核心管理文件，用于项目描述、组织管理、依赖管理和组织信息的管理
+
+### pom文件
+
+- groupId：这是工程组的标识。它在一个组织或者项目中通常是唯一的。若继承parent可不填
+- artifactId：这是工程的标识。它通常是工程的名称。
+- version：这是工程的版本号。在artifact 的仓库中，它用来区分不同的版本。一般使用语义化版本X.Y.Z规则
+- packaging：打包机制，pom、Jar、par、rar、ear、ejb、war、maven-plugin
+- parent：用于在子模块对父模块的pom的继承
+- modules：子模块
+- dependency：依赖
+- dependencyManagement：依赖管理，不会被引入到实际的依赖中，定义在父模块，供子模块继承使用
+- build：编译、打包
+- distributionManagement：Deploy地址
+- properties：自定义参数
+- profiles：根据环境变量进行配置，使用-P[id]激活，如-Pdev
+
+
+
+***版本号***
+
+版本号不写在项目当中，在dependencyManagement当中写，所有子项目的版本就都与父版本一致
+
+#### 实例
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
